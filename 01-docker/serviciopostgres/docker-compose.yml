@@ -1,0 +1,27 @@
+services:
+
+  server-mysql:
+    image: mysql
+    container_name: contenedor-mysql
+    restart: always
+    ports:
+      - 3333:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD:-cambia_esto}
+    volumes:
+      - ./data:/var/lib/mysql
+
+  mysql-workbench:
+    image: lscr.io/linuxserver/mysql-workbench:latest
+    container_name: mysql-workbench
+    cap_add: # Agregar caracteristicas al contenedor
+      - IPC_LOCK # No permite que se guarden las contraseñas o informacion sencible de la maquina
+    environment:
+      - PUID=1000 # Id del usuario
+      - PGID=1000 # Id del grupo al que pertenece el usuario
+      - TZ=Etc/UTC #Zona horaria
+    ports:
+      - 3000:3000
+    restart: unless-stopped
+    depends_on:
+      - server-mysql

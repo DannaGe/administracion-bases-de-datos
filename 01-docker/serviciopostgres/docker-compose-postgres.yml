@@ -1,0 +1,22 @@
+services:
+  server-postgres:
+    image: postgres
+    container_name: contenedor-postgres
+    restart: always
+    ports:
+      - "5454:5432"
+    environment:
+      - POSTGRES_USER=usr_danna
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-cambia_esto}
+      - POSTGRES_DB=db_danna
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD:-cambia_esto}
+    ports:
+      - "8080:80"
+    depends_on:
+      - server-postgres

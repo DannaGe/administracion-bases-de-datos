@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danna - Productos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #4b0082, #4169e1);
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+        h1 {
+            color: #00bfff;
+            margin-top: 20px;
+            font-size: 2.5rem;
+        }
+        .productos-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+        .producto {
+            background: #1a1a2e;
+            padding: 15px;
+            margin: 10px;
+            border-radius: 15px;
+            border: 2px solid #4169e1;
+            box-shadow: 0 0 12px rgba(0, 0, 139, 0.5);
+            transition: transform 0.3s, box-shadow 0.3s;
+            width: 220px;
+            color: #add8e6;
+        }
+        .producto:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px #4169e1;
+        }
+        h2 {
+            color: #00bfff;
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <h1>Lista de Productos</h1>
+    <div class="productos-container">
+        <% productos.forEach(producto => { %>
+            <div class="producto">
+                <h2><%= producto.nombre %></h2>
+            </div>
+        <% }); %>
+    </div>
+</body>
+</html>
+
+
